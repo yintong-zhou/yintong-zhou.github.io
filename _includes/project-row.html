@@ -1,0 +1,13 @@
+{%- assign p = include.project -%}
+{%- capture search -%}{{ p.title }} {{ p.summary }} {{ p.language }} {{ p.topics | join: " " }}{%- endcapture -%}
+<li class="project-row" data-language="{{ p.language | downcase | escape }}" data-search="{{ search | downcase | escape }}">
+  <a class="project-row__link" href="{{ p.url | relative_url }}">
+    <span class="project-row__date">{% include date-it.html date=p.updated %}</span>
+    <span class="project-row__main">
+      <span class="project-row__title" style="view-transition-name: project-{{ p.slug }}">{{ p.title }}</span>
+      <span class="project-row__summary">{{ p.summary }}</span>
+    </span>
+    <span class="project-row__lang">{{ p.language }}</span>
+    <span class="project-row__go" aria-hidden="true">{% include icon-arrow.html %}</span>
+  </a>
+</li>

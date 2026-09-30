@@ -1,0 +1,495 @@
+// Buttons: the accent lives here and nowhere else.
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  padding: $space-2 $space-3;
+  font: inherit;
+  font-weight: $weight-strong;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--on-accent);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: $radius;
+  cursor: pointer;
+  transition: transform 0.25s $ease-out, filter 0.2s;
+
+  svg {
+    transition: transform 0.3s $ease-out;
+  }
+
+  &:hover {
+    filter: brightness(1.08);
+
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  &:hover .icon--right {
+    transform: translateX(3px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &--ghost {
+    color: var(--fg);
+    background: none;
+    border-color: var(--rule);
+
+    &:hover {
+      filter: none;
+      background: var(--hover);
+    }
+  }
+}
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+// Dashboard toolbar
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-2 $space-3;
+  padding-bottom: $space-3;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-1;
+}
+
+.chip {
+  padding: $space-1 $space-2;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: $radius;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color: var(--fg);
+    background: var(--hover);
+  }
+
+  &[aria-pressed="true"] {
+    color: var(--bg);
+    background: var(--fg);
+    border-color: var(--fg);
+  }
+}
+
+.search {
+  width: 100%;
+  max-width: 280px;
+  padding: $space-1 $space-2;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--fg);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: $radius;
+
+  &::placeholder {
+    color: var(--muted);
+  }
+}
+
+.status {
+  padding-bottom: $space-2;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.empty {
+  padding: $space-5 0;
+  max-width: 44ch;
+
+  p {
+    margin-bottom: $space-2;
+  }
+}
+
+// Project list
+.list-head,
+.project-row__link {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  column-gap: $gutter;
+  align-items: baseline;
+}
+
+.list-head {
+  padding-bottom: $space-1;
+  color: var(--muted);
+  font-size: 0.875rem;
+
+  span:nth-child(1) { grid-column: 1 / span 2; }
+  span:nth-child(2) { grid-column: 3 / span 4; }
+  span:nth-child(3) { grid-column: 7 / span 2; }
+
+  @media (max-width: $bp-md) {
+    display: none;
+  }
+}
+
+.project-list {
+  border-top: 1px solid var(--rule);
+}
+
+.project-row {
+  border-bottom: 1px solid var(--rule);
+
+  &__link {
+    position: relative;
+    padding: $space-3 0;
+    text-decoration: none;
+
+    // hover fill sweeps in from the left, extends into the gutter so text keeps its alignment
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -$gutter;
+      right: -$gutter;
+      background: var(--hover);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s $ease-out;
+      z-index: -1;
+    }
+
+    &:hover::before,
+    &:focus-visible::before {
+      transform: scaleX(1);
+    }
+  }
+
+  &__date {
+    grid-column: 1 / span 2;
+    color: var(--muted);
+    font-size: 0.9375rem;
+  }
+
+  &__main {
+    grid-column: 3 / span 4;
+    display: block;
+    transition: transform 0.5s $ease-out;
+  }
+
+  &__link:hover .project-row__main,
+  &__link:focus-visible .project-row__main {
+    transform: translateX($space-1);
+  }
+
+  &__title {
+    display: inline-block;
+    font-family: $font-heading;
+    font-weight: $weight-heading;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  &__summary {
+    display: block;
+    margin-top: 4px;
+    max-width: 52ch;
+    color: var(--muted);
+  }
+
+  &__lang {
+    grid-column: 7 / span 1;
+    font-size: 0.9375rem;
+  }
+
+  &__go {
+    grid-column: 8 / span 1;
+    justify-self: end;
+    align-self: center;
+    transition: transform 0.4s $ease-out;
+  }
+
+  &__link:hover .project-row__go,
+  &__link:focus-visible .project-row__go {
+    transform: translateX(-$space-1);
+  }
+
+  @media (max-width: $bp-md) {
+    &__link {
+      grid-template-columns: 1fr auto;
+      row-gap: $space-1;
+
+      &::before {
+        left: -$space-2;
+        right: -$space-2;
+      }
+    }
+
+    &__main {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+
+    &__date {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    &__lang {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    &__go {
+      display: none;
+    }
+  }
+}
+
+// Project page
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  .icon {
+    transform: scaleX(-1);
+    transition: transform 0.3s $ease-out;
+  }
+
+  &:hover {
+    color: var(--fg);
+
+    .icon {
+      transform: scaleX(-1) translateX(2px);
+    }
+  }
+}
+
+.project {
+  padding-top: $space-4;
+
+  &__head {
+    padding: $space-5 0 $space-4;
+    row-gap: $space-3;
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+    font-size: clamp(2.75rem, 8vw, 6.5rem);
+    letter-spacing: -0.045em;
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  &__summary {
+    grid-column: 1 / span 5;
+    max-width: 44ch;
+    font-size: 1.1875rem;
+    color: var(--muted);
+  }
+
+  &__actions {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: repeat($columns, minmax(0, 1fr));
+    column-gap: $gutter;
+    row-gap: $space-4;
+    padding-bottom: $space-5;
+  }
+
+  &__visual {
+    grid-column: 1 / span 5;
+  }
+
+  &__side {
+    grid-column: 6 / span 3;
+  }
+
+  &__text {
+    grid-column: 1 / span 5;
+    max-width: 65ch;
+
+    p + p,
+    p + ul,
+    ul + p {
+      margin-top: $space-2;
+    }
+
+    ul {
+      padding-left: $space-3;
+      list-style: disc;
+    }
+
+    a {
+      text-underline-offset: 4px;
+    }
+  }
+
+  @media (max-width: $bp-md) {
+    &__head {
+      padding-top: $space-4;
+    }
+
+    &__summary,
+    &__visual,
+    &__side,
+    &__text {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.facts {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+
+  div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: $space-2;
+    padding: $space-2 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  dt {
+    color: var(--muted);
+    font-size: 0.9375rem;
+  }
+
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-1;
+
+  li {
+    padding: 2px $space-1;
+    font-size: 0.875rem;
+    border: 1px solid var(--rule);
+    border-radius: $radius;
+  }
+}
+
+// Visual: real screenshot when `image` is set, otherwise a quiet placeholder on the column grid
+.visual {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: $radius;
+  background: var(--panel);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  &--empty {
+    display: flex;
+    align-items: flex-end;
+    padding: $space-3;
+    color: var(--on-panel);
+
+    .guides {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat($columns, 1fr);
+
+      i {
+        border-left: 1px solid var(--on-panel);
+        opacity: 0.12;
+      }
+    }
+
+    .name {
+      position: relative;
+      font-family: $font-heading;
+      font-weight: $weight-heading;
+      font-size: clamp(1.75rem, 5vw, 3.5rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+  }
+}
+
+// Prev / next
+.pager {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  column-gap: $gutter;
+  padding: $space-4 0;
+  border-top: 1px solid var(--rule);
+
+  a {
+    display: block;
+    text-decoration: none;
+
+    small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+
+    span {
+      font-family: $font-heading;
+      font-weight: $weight-heading;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+      transition: transform 0.4s $ease-out;
+      display: inline-block;
+    }
+
+    &:hover span {
+      transform: translateX($space-1);
+    }
+  }
+
+  &__prev {
+    grid-column: 1 / span 4;
+  }
+
+  &__next {
+    grid-column: 5 / span 4;
+    text-align: right;
+
+    &:hover span {
+      transform: translateX(-$space-1);
+    }
+  }
+}

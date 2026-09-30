@@ -1,8 +1,9 @@
 title: Yintong Zhou
-description: ""
+description: "I miei progetti su GitHub: cosa fanno, come sono fatti e dove trovare il codice."
 url: "https://yintong-zhou.github.io"   # domain only
 baseurl: ""                              # "/repo" for project sites
 lang: it
+github_username: yintong-zhou
 
 markdown: kramdown
 plugins:
@@ -12,6 +13,19 @@ plugins:
 
 sass:
   style: compressed
+
+# One page per project: _projects/<name>.md (front matter = repository info).
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
 
 # Not published. Add every new service folder here.
 exclude:

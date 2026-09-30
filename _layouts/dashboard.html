@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{%- assign projects = site.projects | sort: "updated" | reverse -%}
+{%- assign languages = site.projects | map: "language" | compact | uniq | sort -%}
+<section class="page-head wrap">
+  <h1>{{ page.title }}</h1>
+  <p>
+    {{ projects.size }} progetti in {{ languages.size }} linguaggi.
+    {% if projects.size > 0 -%}
+      Ultimo aggiornamento: {% include date-it.html date=projects.first.updated long=true %}.
+    {%- endif %}
+  </p>
+</section>
+
+<section class="section wrap" data-dashboard>
+  <div class="toolbar">
+    <div class="chips" role="group" aria-label="Filtra per linguaggio">
+      <button class="chip" type="button" data-filter="" aria-pressed="true">Tutti</button>
+      {%- for language in languages %}
+      <button class="chip" type="button" data-filter="{{ language | downcase | escape }}" aria-pressed="false">{{ language }}</button>
+      {%- endfor %}
+    </div>
+    <label class="visually-hidden" for="cerca">Cerca un progetto</label>
+    <input class="search" id="cerca" type="search" placeholder="Cerca per nome o argomento" autocomplete="off" data-search-input>
+  </div>
+
+  <p class="status" role="status" aria-live="polite" data-status>{{ projects.size }} progetti</p>
+
+  <div class="list-head" aria-hidden="true">
+    <span>Aggiornato</span><span>Progetto</span><span>Linguaggio</span>
+  </div>
+  <ul class="project-list" data-list>
+    {%- for project in projects -%}
+      {% include project-row.html project=project %}
+    {%- endfor -%}
+  </ul>
+
+  <div class="empty" data-empty hidden>
+    <p>Nessun progetto corrisponde ai filtri.</p>
+    <button class="btn btn--ghost" type="button" data-reset>Azzera i filtri</button>
+  </div>
+</section>

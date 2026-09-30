@@ -1,0 +1,27 @@
+---
+layout: default
+---
+{%- assign projects = site.projects | sort: "updated" | reverse -%}
+<section class="hero wrap">
+  <h1 class="hero__title">
+    <span class="line"><span>{{ page.headline_1 }}</span></span>
+    <span class="line"><span>{{ page.headline_2 }}</span></span>
+  </h1>
+  <div class="grid">
+    <p class="hero__lead">{{ page.lead }}</p>
+    <div class="hero__cta">
+      <a class="btn" href="{{ '/dashboard/' | relative_url }}">Vedi tutti i progetti {% include icon-arrow.html %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" aria-labelledby="recenti">
+  <div class="section__head">
+    <h2 class="section__title" id="recenti">Aggiornati di recente</h2>
+  </div>
+  <ul class="project-list">
+    {%- for project in projects limit: 3 -%}
+      {% include project-row.html project=project %}
+    {%- endfor -%}
+  </ul>
+</section>

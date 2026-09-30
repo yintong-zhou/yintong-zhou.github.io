@@ -1,0 +1,25 @@
+/* Plain CSS on purpose (no front matter): the Sass compiler used by GitHub Pages
+   may choke on view-transition at-rules and pseudo-elements. No colors or fonts here. */
+
+/* Cross-document view transitions: Chrome/Edge 126+, Safari 18.2+. Elsewhere pages just load normally. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Project titles morph from the list row to the project page (names are set inline per project). */
+::view-transition-group(*) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}

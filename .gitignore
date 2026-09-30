@@ -6,3 +6,4 @@ _site/
 credentials.json
 token.json
 vendor/
+.bundle/

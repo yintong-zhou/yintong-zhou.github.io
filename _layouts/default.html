@@ -2,8 +2,10 @@
 <html lang="{{ site.lang | default: 'it' }}">
   {% include head.html %}
   <body>
+    <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+    {% include grid-lines.html %}
     {% include header.html %}
-    <main class="site-main">
+    <main id="contenuto">
       {{ content }}
     </main>
     {% include footer.html %}

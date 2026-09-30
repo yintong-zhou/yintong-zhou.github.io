@@ -1,0 +1,68 @@
+---
+layout: default
+---
+{%- assign all = site.projects | sort: "updated" | reverse -%}
+{%- assign total = all.size -%}
+{%- for p in all -%}
+  {%- if p.url == page.url -%}{%- assign current = forloop.index0 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign prev_index = current | plus: total | minus: 1 | modulo: total -%}
+{%- assign next_index = current | plus: 1 | modulo: total -%}
+{%- assign prev = all[prev_index] -%}
+{%- assign next = all[next_index] -%}
+
+<article class="project wrap">
+  <a class="back" href="{{ '/dashboard/' | relative_url }}">{% include icon-arrow.html %} Tutti i progetti</a>
+
+  <header class="project__head grid">
+    <h1 class="project__title"><span style="view-transition-name: project-{{ page.slug }}">{{ page.title }}</span></h1>
+    <p class="project__summary">{{ page.summary }}</p>
+    <div class="project__actions">
+      <a class="btn" href="{{ page.repo }}" rel="noopener">Apri su GitHub {% include icon-external.html %}</a>
+      {%- if page.demo %}
+      <a class="btn btn--ghost" href="{{ page.demo }}" rel="noopener">Vedi la demo {% include icon-external.html %}</a>
+      {%- endif %}
+    </div>
+  </header>
+
+  <div class="project__body">
+    <div class="project__visual">
+      {%- if page.image %}
+      <figure class="visual"><img src="{{ page.image | relative_url }}" alt="Schermata di {{ page.title }}" loading="lazy"></figure>
+      {%- else %}
+      <div class="visual visual--empty" aria-hidden="true">
+        <div class="guides"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="name">{{ page.title }}</span>
+      </div>
+      {%- endif %}
+    </div>
+
+    <dl class="project__side facts">
+      <div><dt>Linguaggio</dt><dd>{{ page.language | default: "Non indicato" }}</dd></div>
+      <div><dt>Aggiornato</dt><dd>{% include date-it.html date=page.updated long=true %}</dd></div>
+      <div><dt>Repository</dt><dd>{{ page.repo | remove: "https://github.com/" }}</dd></div>
+      {%- if page.topics and page.topics.size > 0 %}
+      <div>
+        <dt>Argomenti</dt>
+        <dd>
+          <ul class="tags">
+            {%- for topic in page.topics %}<li>{{ topic }}</li>{% endfor %}
+          </ul>
+        </dd>
+      </div>
+      {%- endif %}
+    </dl>
+
+    {%- assign body = content | strip %}
+    {%- if body != "" %}
+    <div class="project__text">{{ content }}</div>
+    {%- endif %}
+  </div>
+
+  {%- if total > 1 %}
+  <nav class="pager" aria-label="Altri progetti">
+    <a class="pager__prev" href="{{ prev.url | relative_url }}" rel="prev"><small>Precedente</small><span>{{ prev.title }}</span></a>
+    <a class="pager__next" href="{{ next.url | relative_url }}" rel="next"><small>Successivo</small><span>{{ next.title }}</span></a>
+  </nav>
+  {%- endif %}
+</article>

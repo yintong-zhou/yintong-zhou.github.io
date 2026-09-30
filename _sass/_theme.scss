@@ -1,0 +1,45 @@
+// Light is the default. Dark follows the system unless the user picked a theme
+// with the toggle (html[data-theme]).
+
+@mixin theme-light {
+  --bg: #{$color-secondary};
+  --fg: #{$color-primary};
+  --muted: #{rgba($color-dark-neutral, 0.72)};
+  --rule: #{$color-light-neutral};
+  --hover: #{rgba($color-light-neutral, 0.45)};
+  --panel: #{$color-primary};
+  --on-panel: #{$color-secondary};
+}
+
+@mixin theme-dark {
+  --bg: #{$color-primary};
+  --fg: #{$color-secondary};
+  --muted: #{rgba($color-light-neutral, 0.72)};
+  --rule: #{$color-dark-neutral};
+  --hover: #{rgba($color-dark-neutral, 0.55)};
+  --panel: #{$color-primary};
+  --on-panel: #{$color-secondary};
+}
+
+:root {
+  @include theme-light;
+  --accent: #{$color-accent};
+  --on-accent: #{$color-primary};
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include theme-dark;
+  }
+}
+
+:root[data-theme="light"] {
+  @include theme-light;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  @include theme-dark;
+  color-scheme: dark;
+}
