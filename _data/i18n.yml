@@ -1,6 +1,6 @@
 # UI strings, one block per language. Language codes must match `languages` in _config.yml.
 # Only English is enabled at the moment; to add a language, see CLAUDE.md.
-# `%token%` placeholders are replaced in Liquid (layouts/dashboard.html) or JS (assets/js/main.js).
+# `%token%` placeholders are replaced in Liquid (layouts/projects.html) or JS (assets/js/main.js).
 # Page copy that belongs to a single page (hero headline, lead) lives in that page's front matter.
 
 en:
@@ -14,14 +14,10 @@ en:
   lang_label: Language
   recent: Recently updated
   see_all: See all projects
-  dashboard_title: Dashboard
-  stats: "%projects% in %languages%."
+  projects_title: Projects
   count_one: "%n% project"
   count_other: "%n% projects"
   count_of: "%n% of %total% projects"
-  languages_one: "%n% language"
-  languages_other: "%n% languages"
-  last_update: "Last updated: %date%."
   filter_label: Filter by language
   all: All
   search_label: Search projects

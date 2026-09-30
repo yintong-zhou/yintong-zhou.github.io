@@ -48,18 +48,18 @@
     }
   }
 
-  // Dashboard: filter by language + search. Remaining rows glide to their new
+  // Project list: filter by language + search. Remaining rows glide to their new
   // position (FLIP), new rows fade in.
-  var dashboard = document.querySelector("[data-dashboard]");
-  if (!dashboard) return;
+  var listing = document.querySelector("[data-project-list]");
+  if (!listing) return;
 
-  var list = dashboard.querySelector("[data-list]");
+  var list = listing.querySelector("[data-list]");
   var rows = Array.prototype.slice.call(list.children);
-  var chips = Array.prototype.slice.call(dashboard.querySelectorAll("[data-filter]"));
-  var input = dashboard.querySelector("[data-search-input]");
-  var status = dashboard.querySelector("[data-status]");
-  var empty = dashboard.querySelector("[data-empty]");
-  var reset = dashboard.querySelector("[data-reset]");
+  var chips = Array.prototype.slice.call(listing.querySelectorAll("[data-filter]"));
+  var input = listing.querySelector("[data-search-input]");
+  var status = listing.querySelector("[data-status]");
+  var empty = listing.querySelector("[data-empty]");
+  var reset = listing.querySelector("[data-reset]");
   var language = "";
 
   function matches(row) {
@@ -71,9 +71,9 @@
 
   // Count templates come from _data/i18n.yml through data attributes (%n%, %total%).
   var labels = {
-    one: dashboard.getAttribute("data-label-one"),
-    other: dashboard.getAttribute("data-label-other"),
-    of: dashboard.getAttribute("data-label-of")
+    one: listing.getAttribute("data-label-one"),
+    other: listing.getAttribute("data-label-other"),
+    of: listing.getAttribute("data-label-of")
   };
 
   function label(count) {

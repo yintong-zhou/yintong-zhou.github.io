@@ -2,7 +2,7 @@
   Where the current page lives in every language. Sets `alt_list`, a string of "code|path|real;" items
   (real = 1 when a translation exists). Consumers split it: head.html (hreflang) and header.html (switcher).
   Pages define `route` (their path without language prefix). Project pages are derived from the project slug;
-  a project that is not translated yet falls back to that language's dashboard.
+  a project that is not translated yet falls back to that language's projects page.
 {%- endcomment -%}
 {%- assign alt_list = "" -%}
 {%- assign alt_slug = page.ref | default: page.slug -%}
@@ -21,7 +21,7 @@
       {%- if alt_hit -%}
         {%- assign alt_path = alt_prefix | append: "/projects/" | append: alt_slug | append: "/" -%}
       {%- else -%}
-        {%- assign alt_path = alt_prefix | append: "/dashboard/" -%}
+        {%- assign alt_path = alt_prefix | append: "/projects/" -%}
         {%- assign alt_real = "0" -%}
       {%- endif -%}
     {%- endif -%}

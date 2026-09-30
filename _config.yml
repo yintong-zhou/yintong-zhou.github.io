@@ -22,6 +22,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-redirect-from   # old /dashboard/ URL -> /projects/
 
 sass:
   style: compressed
@@ -33,7 +34,7 @@ collections:
     permalink: /projects/:name/
 
 defaults:
-  # Pages only: project documents use `image` for their own screenshot (see layouts/project.html)
+  # Pages only: project documents use `image` for their own screenshot (see layouts/project_details.html)
   - scope:
       path: ""
       type: pages
@@ -43,7 +44,7 @@ defaults:
       path: ""
       type: projects
     values:
-      layout: project
+      layout: project_details
       lang: en
 
 # Not published. Add every new service folder here.

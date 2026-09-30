@@ -10,6 +10,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  // press feedback comes from :active styles, not the default grey flash
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {

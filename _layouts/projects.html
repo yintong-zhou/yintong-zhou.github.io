@@ -6,20 +6,13 @@ layout: default
 {%- assign languages = site.projects | map: "language" | compact | uniq | sort -%}
 
 {%- if projects.size == 1 -%}{%- assign projects_label = t.count_one -%}{%- else -%}{%- assign projects_label = t.count_other -%}{%- endif -%}
-{%- if languages.size == 1 -%}{%- assign languages_label = t.languages_one -%}{%- else -%}{%- assign languages_label = t.languages_other -%}{%- endif -%}
 {%- assign projects_label = projects_label | replace: "%n%", projects.size -%}
-{%- assign languages_label = languages_label | replace: "%n%", languages.size -%}
-{%- capture last_date -%}{% include date.html date=projects.first.updated long=true %}{%- endcapture -%}
 
 <section class="page-head wrap">
-  <h1>{{ t.dashboard_title }}</h1>
-  <p>
-    {{ t.stats | replace: "%projects%", projects_label | replace: "%languages%", languages_label }}
-    {% if projects.size > 0 %}{{ t.last_update | replace: "%date%", last_date }}{% endif %}
-  </p>
+  <h1>{{ t.projects_title }}</h1>
 </section>
 
-<section class="section wrap" data-dashboard data-label-one="{{ t.count_one }}" data-label-other="{{ t.count_other }}" data-label-of="{{ t.count_of }}">
+<section class="section wrap" data-project-list data-label-one="{{ t.count_one }}" data-label-other="{{ t.count_other }}" data-label-of="{{ t.count_of }}">
   <div class="toolbar">
     <div class="chips" role="group" aria-label="{{ t.filter_label }}">
       <button class="chip" type="button" data-filter="" aria-pressed="true">{{ t.all }}</button>

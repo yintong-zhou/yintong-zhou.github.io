@@ -25,7 +25,7 @@ layout: default
 {%- include project-info.html project=next -%}{%- assign next_href = p_href -%}
 
 <article class="project wrap">
-  <a class="back" href="{{ prefix | append: '/dashboard/' | relative_url }}">{% include icon-arrow.html %} {{ t.back }}</a>
+  <a class="back" href="{{ prefix | append: '/projects/' | relative_url }}">{% include icon-arrow.html %} {{ t.back }}</a>
 
   <header class="project__head grid">
     <h1 class="project__title"><span style="view-transition-name: project-{{ base.slug }}">{{ base.title }}</span></h1>

@@ -59,7 +59,6 @@ main,
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
     gap: $space-2 $space-3;
     padding-top: $space-3;
     padding-bottom: $space-3;
@@ -79,6 +78,7 @@ main,
   display: flex;
   align-items: center;
   gap: $space-3;
+  margin-left: auto;
 
   @media (max-width: $bp-sm) {
     gap: $space-2;
@@ -101,13 +101,13 @@ main,
   gap: $space-2;
 
   a {
-    padding-bottom: 2px;
     font-size: 0.9375rem;
-    border-bottom: 1px solid transparent;
 
     &[aria-current="true"] {
       color: var(--fg);
-      border-bottom-color: var(--fg);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 6px;
     }
   }
 }
@@ -125,7 +125,13 @@ main,
   cursor: pointer;
   transition: background-color 0.2s;
 
-  &:hover {
+  @media (hover: hover) {
+    &:hover {
+      background: var(--hover);
+    }
+  }
+
+  &:active {
     background: var(--hover);
   }
 
