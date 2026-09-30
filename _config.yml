@@ -54,6 +54,7 @@ exclude:
   - CLAUDE.md
   - README.md
   - directives/
+  - docs/
   - execution/
   - .tmp/
   - .env
