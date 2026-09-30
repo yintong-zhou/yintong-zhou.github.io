@@ -1,0 +1,8 @@
+_site/
+.jekyll-cache/
+.sass-cache/
+.tmp/
+.env
+credentials.json
+token.json
+vendor/

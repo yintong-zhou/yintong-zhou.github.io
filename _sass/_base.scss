@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-body;
+  color: $color-text;
+  background: $color-background;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  line-height: 1.25;
+}
+
+a {
+  color: $color-accent;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: $spacing;
+}
+
+.site-title {
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-footer {
+  color: $color-muted;
+}

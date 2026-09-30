@@ -1,0 +1,14 @@
+// Single source of truth for colors and fonts.
+// When brand-guidelines.md exists, map its values here.
+// No hard-coded colors/fonts elsewhere.
+
+$font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$font-heading: $font-body;
+
+$color-text: #1a1a1a;
+$color-background: #ffffff;
+$color-accent: #0a58ca;
+$color-muted: #6b7280;
+
+$content-width: 48rem;
+$spacing: 1rem;

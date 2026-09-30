@@ -1,0 +1,32 @@
+title: Yintong Zhou
+description: ""
+url: "https://yintong-zhou.github.io"   # domain only
+baseurl: ""                              # "/repo" for project sites
+lang: it
+
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+sass:
+  style: compressed
+
+# Not published. Add every new service folder here.
+exclude:
+  - AGENT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - directives/
+  - execution/
+  - .tmp/
+  - .env
+  - credentials.json
+  - token.json
+  - brand-guidelines.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
