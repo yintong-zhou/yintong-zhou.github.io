@@ -5,6 +5,10 @@ baseurl: ""                              # "/repo" for project sites
 lang: it
 github_username: yintong-zhou
 
+# Used by jekyll-seo-tag: schema.org logo. The social preview image is a page-level value,
+# so its default is set in `defaults` below. Browser icons are in _includes/head.html.
+logo: /assets/img/icon-512.png
+
 # Multilanguage: default language is served at /, the others under /<code>/.
 # Adding a language = add it here, add a block in _data/i18n.yml, a `projects_<code>`
 # collection below, and translated pages in <code>/.
@@ -33,6 +37,12 @@ collections:
     permalink: /en/projects/:name/
 
 defaults:
+  # Pages only: project documents use `image` for their own screenshot (see layouts/project.html)
+  - scope:
+      path: ""
+      type: pages
+    values:
+      image: /assets/img/icon-512.png
   - scope:
       path: ""
       type: projects

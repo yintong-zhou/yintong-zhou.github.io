@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/img/icon-512.png" alt="Project logo" width="128" height="128">
+</p>
+
 # yintong-zhou.github.io
 
 My personal showcase of GitHub projects: a dashboard that lists every project, plus a dedicated page for each repository with its details and a direct link to GitHub.
