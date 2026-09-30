@@ -1,0 +1,87 @@
+# UI strings, one block per language. Language codes must match `languages` in _config.yml.
+# `%token%` placeholders are replaced in Liquid (layouts/dashboard.html) or JS (assets/js/main.js).
+# Page copy that belongs to a single page (hero headline, lead) lives in that page's front matter.
+
+it:
+  name: Italiano
+  code: IT
+  skip: Vai al contenuto
+  nav_label: Principale
+  nav_projects: Progetti
+  theme_toggle: Cambia tema
+  lang_label: Lingua
+  recent: Aggiornati di recente
+  see_all: Vedi tutti i progetti
+  dashboard_title: Dashboard
+  stats: "%projects% in %languages%."
+  count_one: "%n% progetto"
+  count_other: "%n% progetti"
+  count_of: "%n% di %total% progetti"
+  languages_one: "%n% linguaggio"
+  languages_other: "%n% linguaggi"
+  last_update: "Ultimo aggiornamento: %date%."
+  filter_label: Filtra per linguaggio
+  all: Tutti
+  search_label: Cerca un progetto
+  search_placeholder: Cerca per nome o argomento
+  col_updated: Aggiornato
+  col_project: Progetto
+  col_language: Linguaggio
+  empty: Nessun progetto corrisponde ai filtri.
+  reset: Azzera i filtri
+  back: Tutti i progetti
+  open_github: Apri su GitHub
+  open_demo: Vedi la demo
+  f_language: Linguaggio
+  f_updated: Aggiornato
+  f_repository: Repository
+  f_topics: Argomenti
+  not_specified: Non indicato
+  screenshot_alt: "Schermata di %title%"
+  pager_label: Altri progetti
+  prev: Precedente
+  next: Successivo
+  months_short: [gen, feb, mar, apr, mag, giu, lug, ago, set, ott, nov, dic]
+  months_long: [gennaio, febbraio, marzo, aprile, maggio, giugno, luglio, agosto, settembre, ottobre, novembre, dicembre]
+
+en:
+  name: English
+  code: EN
+  skip: Skip to content
+  nav_label: Main
+  nav_projects: Projects
+  theme_toggle: Toggle theme
+  lang_label: Language
+  recent: Recently updated
+  see_all: See all projects
+  dashboard_title: Dashboard
+  stats: "%projects% in %languages%."
+  count_one: "%n% project"
+  count_other: "%n% projects"
+  count_of: "%n% of %total% projects"
+  languages_one: "%n% language"
+  languages_other: "%n% languages"
+  last_update: "Last updated: %date%."
+  filter_label: Filter by language
+  all: All
+  search_label: Search projects
+  search_placeholder: Search by name or topic
+  col_updated: Updated
+  col_project: Project
+  col_language: Language
+  empty: No project matches the filters.
+  reset: Clear filters
+  back: All projects
+  open_github: Open on GitHub
+  open_demo: View demo
+  f_language: Language
+  f_updated: Updated
+  f_repository: Repository
+  f_topics: Topics
+  not_specified: Not specified
+  screenshot_alt: "Screenshot of %title%"
+  pager_label: More projects
+  prev: Previous
+  next: Next
+  months_short: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+  months_long: [January, February, March, April, May, June, July, August, September, October, November, December]

@@ -1,0 +1,10 @@
+{%- comment -%}
+  "month year" in the current language (needs i18n.html included first).
+  Usage: {% include date.html date=project.updated %} (add long=true for the full month name)
+{%- endcomment -%}
+{%- assign month_index = include.date | date: "%-m" | minus: 1 -%}
+{%- if include.long -%}
+{{ t.months_long[month_index] }} {{ include.date | date: "%Y" }}
+{%- else -%}
+{{ t.months_short[month_index] }} {{ include.date | date: "%Y" }}
+{%- endif -%}

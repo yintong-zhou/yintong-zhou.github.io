@@ -1,10 +1,18 @@
 <header class="site-header">
   <div class="wrap">
-    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <nav class="site-nav" aria-label="Principale">
-      <a href="{{ '/dashboard/' | relative_url }}"{% if page.url == '/dashboard/' %} aria-current="page"{% endif %}>Progetti</a>
+    <a class="site-title" href="{{ prefix | append: '/' | relative_url }}">{{ site.title }}</a>
+    <nav class="site-nav" aria-label="{{ t.nav_label }}">
+      <a href="{{ prefix | append: '/dashboard/' | relative_url }}"{% if page.route == '/dashboard/' %} aria-current="page"{% endif %}>{{ t.nav_projects }}</a>
       <a href="https://github.com/{{ site.github_username }}" rel="noopener">GitHub</a>
-      <button class="theme-toggle" type="button" aria-label="Cambia tema" data-theme-toggle>
+      <div class="lang-switch" role="group" aria-label="{{ t.lang_label }}">
+        {%- for item in alts -%}
+          {%- assign parts = item | split: "|" -%}
+          {%- assign item_lang = parts[0] -%}
+          {%- assign item_strings = site.data.i18n[item_lang] -%}
+          <a href="{{ parts[1] | relative_url }}" lang="{{ item_lang }}" hreflang="{{ item_lang }}"{% if item_lang == lang %} aria-current="true"{% endif %}>{{ item_strings.code }}</a>
+        {%- endfor -%}
+      </div>
+      <button class="theme-toggle" type="button" aria-label="{{ t.theme_toggle }}" data-theme-toggle>
         <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <circle cx="8" cy="8" r="6"/>
           <path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/>

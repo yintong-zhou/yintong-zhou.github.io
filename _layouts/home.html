@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{%- include i18n.html -%}
 {%- assign projects = site.projects | sort: "updated" | reverse -%}
 <section class="hero wrap">
   <h1 class="hero__title">
@@ -10,14 +11,14 @@ layout: default
   <div class="grid">
     <p class="hero__lead">{{ page.lead }}</p>
     <div class="hero__cta">
-      <a class="btn" href="{{ '/dashboard/' | relative_url }}">Vedi tutti i progetti {% include icon-arrow.html %}</a>
+      <a class="btn" href="{{ prefix | append: '/dashboard/' | relative_url }}">{{ t.see_all }} {% include icon-arrow.html %}</a>
     </div>
   </div>
 </section>
 
 <section class="section wrap" aria-labelledby="recenti">
   <div class="section__head">
-    <h2 class="section__title" id="recenti">Aggiornati di recente</h2>
+    <h2 class="section__title" id="recenti">{{ t.recent }}</h2>
   </div>
   <ul class="project-list">
     {%- for project in projects limit: 3 -%}

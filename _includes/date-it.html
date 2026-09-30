@@ -1,9 +1,0 @@
-{%- comment -%}
-  Italian "mese anno". Usage: {% include date-it.html date=project.updated %} (add long=true for the full month name)
-{%- endcomment -%}
-{%- assign month_index = include.date | date: "%-m" | minus: 1 -%}
-{%- if include.long -%}
-{{ site.data.it.months_long[month_index] }} {{ include.date | date: "%Y" }}
-{%- else -%}
-{{ site.data.it.months_short[month_index] }} {{ include.date | date: "%Y" }}
-{%- endif -%}

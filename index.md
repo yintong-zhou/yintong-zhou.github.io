@@ -1,5 +1,7 @@
 ---
 layout: home
+lang: it
+route: /
 title: Home
 headline_1: Codice che
 headline_2: ho scritto.

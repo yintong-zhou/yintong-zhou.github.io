@@ -1,0 +1,17 @@
+{%- comment -%}
+  Language-aware link and summary for a base project (from the `projects` collection).
+  Needs i18n.html included first. Usage: {% include project-info.html project=p %}
+  Sets p_href and p_summary. Without a translation, falls back to the default-language page and summary.
+{%- endcomment -%}
+{%- assign p_href = include.project.url -%}
+{%- assign p_summary = include.project.summary -%}
+{%- if lang != site.default_lang -%}
+  {%- assign p_coll = "projects_" | append: lang -%}
+  {%- assign p_tr = site[p_coll] | where: "ref", include.project.slug | first -%}
+  {%- if p_tr -%}
+    {%- assign p_href = prefix | append: "/projects/" | append: include.project.slug | append: "/" -%}
+    {%- if p_tr.summary -%}
+      {%- assign p_summary = p_tr.summary -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

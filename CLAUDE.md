@@ -29,7 +29,15 @@ Page flow (all read `site.projects | sort: "updated" | reverse`):
 - `index.md` → `_layouts/home.html` (hero copy comes from its front matter + 3 most recent rows)
 - `dashboard.md` (`/dashboard/`) → `_layouts/dashboard.html` (language chips generated from the data, search, full list)
 - `_layouts/project.html` (detail page, prev/next pager computed in Liquid)
-- `_includes/project-row.html` is shared by home and dashboard; `date-it.html` formats dates using `_data/it.yml` (Liquid's `date` only outputs English month names).
+- `_includes/project-row.html` is shared by home and dashboard; `date.html` formats dates with the month names from `_data/i18n.yml` (Liquid's `date` only outputs English month names).
+
+**Multilanguage** (Liquid + data only, no plugin; default `it` at `/`, `en` under `/en/`; `default_lang`/`languages` in `_config.yml`):
+- UI strings live in `_data/i18n.yml`, one block per language; layouts start with `{% include i18n.html %}`, which sets `lang`, `t` (strings) and `prefix` (`""` or `/en`). All internal links are built as `prefix | append: '/dashboard/' | relative_url`. Strings needed by JS (dashboard counts) are passed through `data-label-*` attributes.
+- Pages exist once per language (`index.md`, `dashboard.md`, `en/index.md`, `en/dashboard.md`) with `lang`, `permalink` and `route` (path without prefix) in front matter; per-page copy (hero headline, lead, description) stays in that front matter.
+- Projects: the `projects` collection holds the data (Italian). Each extra language has its own collection `projects_<code>` (`_projects_en/<name>.md`, permalink `/en/projects/:name/`) with translation stubs only: `ref` (= base file name), `title`, `summary`, optional body text. `layout: project` serves both; it reads data from the base doc via `ref`. `project-info.html` gives the language-aware link and summary for lists.
+- **Adding a project** = `_projects/<name>.md` + one stub per language. A missing stub is not an error: lists link to the Italian page with the Italian summary, and the language switcher points that language to its dashboard (no `hreflang`).
+- `alternates.html` computes each page's URL in every language (`alt_list`), used by the switcher (`header.html`) and the `hreflang` links (`head.html`). The `for` loops need it pre-split into `alts` (set in `_layouts/default.html`; Liquid `for` does not accept filters).
+- Adding a language: entry in `languages`, block in `_data/i18n.yml`, collection `projects_<code>` + its `defaults` scope in `_config.yml`, translated pages in `<code>/`, stubs. There is deliberately no automatic redirect by browser language.
 
 **Styling** — `brand-guidelines.md` is mapped to `_sass/_variables.scss` (the only place with hex values and font names). `_theme.scss` turns them into CSS custom properties for light/dark (system preference, overridden by `html[data-theme]`); components use only `var(--…)`. Accent color is for calls to action only (`.btn`). Brand constraints: one heading weight, 2–4px radius, 8px spacing scale, 8-column grid, no texture/noise. `assets/css/main.scss` imports the partials.
 

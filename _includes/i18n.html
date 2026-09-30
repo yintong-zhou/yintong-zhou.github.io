@@ -1,0 +1,13 @@
+{%- comment -%}
+  Language context. Include at the top of every layout; it sets, for the rest of the render:
+    lang    current language code (page.lang, falls back to site.default_lang)
+    t       UI strings for that language (_data/i18n.yml)
+    prefix  URL prefix: "" for the default language, "/<code>" for the others
+{%- endcomment -%}
+{%- assign lang = page.lang | default: site.default_lang -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- if lang == site.default_lang -%}
+  {%- assign prefix = "" -%}
+{%- else -%}
+  {%- assign prefix = "/" | append: lang -%}
+{%- endif -%}

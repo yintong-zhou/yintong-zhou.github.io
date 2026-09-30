@@ -57,9 +57,10 @@ main,
 
   .wrap {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: $space-3;
+    gap: $space-2 $space-3;
     padding-top: $space-3;
     padding-bottom: $space-3;
   }
@@ -79,6 +80,10 @@ main,
   align-items: center;
   gap: $space-3;
 
+  @media (max-width: $bp-sm) {
+    gap: $space-2;
+  }
+
   a {
     text-decoration: none;
     color: var(--muted);
@@ -87,6 +92,22 @@ main,
     &:hover,
     &[aria-current="page"] {
       color: var(--fg);
+    }
+  }
+}
+
+.lang-switch {
+  display: flex;
+  gap: $space-2;
+
+  a {
+    padding-bottom: 2px;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid transparent;
+
+    &[aria-current="true"] {
+      color: var(--fg);
+      border-bottom-color: var(--fg);
     }
   }
 }

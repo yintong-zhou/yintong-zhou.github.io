@@ -1,0 +1,32 @@
+{%- comment -%}
+  Where the current page lives in every language. Sets `alt_list`, a string of "code|path|real;" items
+  (real = 1 when a translation exists). Consumers split it: head.html (hreflang) and header.html (switcher).
+  Pages define `route` (their path without language prefix). Project pages are derived from the project slug;
+  a project that is not translated yet falls back to that language's dashboard.
+{%- endcomment -%}
+{%- assign alt_list = "" -%}
+{%- assign alt_slug = page.ref | default: page.slug -%}
+{%- for l in site.languages -%}
+  {%- assign alt_prefix = "" -%}
+  {%- if l != site.default_lang -%}
+    {%- assign alt_prefix = "/" | append: l -%}
+  {%- endif -%}
+  {%- assign alt_real = "1" -%}
+  {%- if page.collection contains "projects" -%}
+    {%- if l == site.default_lang -%}
+      {%- assign alt_path = "/projects/" | append: alt_slug | append: "/" -%}
+    {%- else -%}
+      {%- assign alt_coll = "projects_" | append: l -%}
+      {%- assign alt_hit = site[alt_coll] | where: "ref", alt_slug | first -%}
+      {%- if alt_hit -%}
+        {%- assign alt_path = alt_prefix | append: "/projects/" | append: alt_slug | append: "/" -%}
+      {%- else -%}
+        {%- assign alt_path = alt_prefix | append: "/dashboard/" -%}
+        {%- assign alt_real = "0" -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign alt_path = alt_prefix | append: page.route -%}
+  {%- endif -%}
+  {%- assign alt_list = alt_list | append: l | append: "|" | append: alt_path | append: "|" | append: alt_real | append: ";" -%}
+{%- endfor -%}

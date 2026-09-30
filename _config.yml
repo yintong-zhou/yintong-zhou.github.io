@@ -5,6 +5,12 @@ baseurl: ""                              # "/repo" for project sites
 lang: it
 github_username: yintong-zhou
 
+# Multilanguage: default language is served at /, the others under /<code>/.
+# Adding a language = add it here, add a block in _data/i18n.yml, a `projects_<code>`
+# collection below, and translated pages in <code>/.
+default_lang: it
+languages: [it, en]
+
 markdown: kramdown
 plugins:
   - jekyll-seo-tag
@@ -15,10 +21,16 @@ sass:
   style: compressed
 
 # One page per project: _projects/<name>.md (front matter = repository info).
+#  - projects: one file per project, holds the repository data (Italian = default language)
+#  - projects_<code>: one small file per project and language, only translations
+#    (`ref` = file name of the base project, `title`, `summary`, optional body text)
 collections:
   projects:
     output: true
     permalink: /projects/:name/
+  projects_en:
+    output: true
+    permalink: /en/projects/:name/
 
 defaults:
   - scope:
@@ -26,6 +38,13 @@ defaults:
       type: projects
     values:
       layout: project
+      lang: it
+  - scope:
+      path: ""
+      type: projects_en
+    values:
+      layout: project
+      lang: en
 
 # Not published. Add every new service folder here.
 exclude:

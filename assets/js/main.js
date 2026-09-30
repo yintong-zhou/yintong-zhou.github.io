@@ -36,11 +36,16 @@
     return byLanguage && bySearch;
   }
 
+  // Count templates come from _data/i18n.yml through data attributes (%n%, %total%).
+  var labels = {
+    one: dashboard.getAttribute("data-label-one"),
+    other: dashboard.getAttribute("data-label-other"),
+    of: dashboard.getAttribute("data-label-of")
+  };
+
   function label(count) {
-    var noun = count === 1 ? "progetto" : "progetti";
-    return count === rows.length
-      ? count + " " + noun
-      : count + " di " + rows.length + " progetti";
+    var template = count === rows.length ? (count === 1 ? labels.one : labels.other) : labels.of;
+    return template.replace("%n%", count).replace("%total%", rows.length);
   }
 
   function update() {

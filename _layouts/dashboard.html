@@ -1,34 +1,40 @@
 ---
 layout: default
 ---
+{%- include i18n.html -%}
 {%- assign projects = site.projects | sort: "updated" | reverse -%}
 {%- assign languages = site.projects | map: "language" | compact | uniq | sort -%}
+
+{%- if projects.size == 1 -%}{%- assign projects_label = t.count_one -%}{%- else -%}{%- assign projects_label = t.count_other -%}{%- endif -%}
+{%- if languages.size == 1 -%}{%- assign languages_label = t.languages_one -%}{%- else -%}{%- assign languages_label = t.languages_other -%}{%- endif -%}
+{%- assign projects_label = projects_label | replace: "%n%", projects.size -%}
+{%- assign languages_label = languages_label | replace: "%n%", languages.size -%}
+{%- capture last_date -%}{% include date.html date=projects.first.updated long=true %}{%- endcapture -%}
+
 <section class="page-head wrap">
-  <h1>{{ page.title }}</h1>
+  <h1>{{ t.dashboard_title }}</h1>
   <p>
-    {{ projects.size }} progetti in {{ languages.size }} linguaggi.
-    {% if projects.size > 0 -%}
-      Ultimo aggiornamento: {% include date-it.html date=projects.first.updated long=true %}.
-    {%- endif %}
+    {{ t.stats | replace: "%projects%", projects_label | replace: "%languages%", languages_label }}
+    {% if projects.size > 0 %}{{ t.last_update | replace: "%date%", last_date }}{% endif %}
   </p>
 </section>
 
-<section class="section wrap" data-dashboard>
+<section class="section wrap" data-dashboard data-label-one="{{ t.count_one }}" data-label-other="{{ t.count_other }}" data-label-of="{{ t.count_of }}">
   <div class="toolbar">
-    <div class="chips" role="group" aria-label="Filtra per linguaggio">
-      <button class="chip" type="button" data-filter="" aria-pressed="true">Tutti</button>
+    <div class="chips" role="group" aria-label="{{ t.filter_label }}">
+      <button class="chip" type="button" data-filter="" aria-pressed="true">{{ t.all }}</button>
       {%- for language in languages %}
       <button class="chip" type="button" data-filter="{{ language | downcase | escape }}" aria-pressed="false">{{ language }}</button>
       {%- endfor %}
     </div>
-    <label class="visually-hidden" for="cerca">Cerca un progetto</label>
-    <input class="search" id="cerca" type="search" placeholder="Cerca per nome o argomento" autocomplete="off" data-search-input>
+    <label class="visually-hidden" for="cerca">{{ t.search_label }}</label>
+    <input class="search" id="cerca" type="search" placeholder="{{ t.search_placeholder }}" autocomplete="off" data-search-input>
   </div>
 
-  <p class="status" role="status" aria-live="polite" data-status>{{ projects.size }} progetti</p>
+  <p class="status" role="status" aria-live="polite" data-status>{{ projects_label }}</p>
 
   <div class="list-head" aria-hidden="true">
-    <span>Aggiornato</span><span>Progetto</span><span>Linguaggio</span>
+    <span>{{ t.col_updated }}</span><span>{{ t.col_project }}</span><span>{{ t.col_language }}</span>
   </div>
   <ul class="project-list" data-list>
     {%- for project in projects -%}
@@ -37,7 +43,7 @@ layout: default
   </ul>
 
   <div class="empty" data-empty hidden>
-    <p>Nessun progetto corrisponde ai filtri.</p>
-    <button class="btn btn--ghost" type="button" data-reset>Azzera i filtri</button>
+    <p>{{ t.empty }}</p>
+    <button class="btn btn--ghost" type="button" data-reset>{{ t.reset }}</button>
   </div>
 </section>
