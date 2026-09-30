@@ -1,8 +1,8 @@
 ---
 layout: dashboard
-lang: it
+lang: en
 route: /dashboard/
 permalink: /dashboard/
 title: Dashboard
-description: Tutti i progetti GitHub di Yintong Zhou, con filtri per linguaggio e ricerca.
+description: All of Yintong Zhou's GitHub projects, with language filters and search.
 ---

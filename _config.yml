@@ -1,19 +1,21 @@
 title: Yintong Zhou
-description: "I miei progetti su GitHub: cosa fanno, come sono fatti e dove trovare il codice."
+description: "My GitHub projects: what they do, how they are built and where to find the code."
 url: "https://yintong-zhou.github.io"   # domain only
 baseurl: ""                              # "/repo" for project sites
-lang: it
+lang: en
 github_username: yintong-zhou
+about_url: "https://yintong-zhou.pages.dev/"   # personal site, linked from the navbar
 
 # Used by jekyll-seo-tag: schema.org logo. The social preview image is a page-level value,
 # so its default is set in `defaults` below. Browser icons are in _includes/head.html.
 logo: /assets/img/icon-512.png
 
-# Multilanguage: default language is served at /, the others under /<code>/.
-# Adding a language = add it here, add a block in _data/i18n.yml, a `projects_<code>`
-# collection below, and translated pages in <code>/.
-default_lang: it
-languages: [it, en]
+# Languages: the default one is served at /, any other under /<code>/. Only English is enabled now
+# (the switcher is hidden while there is a single language). Adding a language = add it here, add a
+# block in _data/i18n.yml, a `projects_<code>` collection + defaults scope below, translated pages
+# in <code>/ and one translation stub per project (details in CLAUDE.md).
+default_lang: en
+languages: [en]
 
 markdown: kramdown
 plugins:
@@ -24,17 +26,11 @@ plugins:
 sass:
   style: compressed
 
-# One page per project: _projects/<name>.md (front matter = repository info).
-#  - projects: one file per project, holds the repository data (Italian = default language)
-#  - projects_<code>: one small file per project and language, only translations
-#    (`ref` = file name of the base project, `title`, `summary`, optional body text)
+# One page per project: _projects/<name>.md (front matter = repository info, in the default language).
 collections:
   projects:
     output: true
     permalink: /projects/:name/
-  projects_en:
-    output: true
-    permalink: /en/projects/:name/
 
 defaults:
   # Pages only: project documents use `image` for their own screenshot (see layouts/project.html)
@@ -46,12 +42,6 @@ defaults:
   - scope:
       path: ""
       type: projects
-    values:
-      layout: project
-      lang: it
-  - scope:
-      path: ""
-      type: projects_en
     values:
       layout: project
       lang: en

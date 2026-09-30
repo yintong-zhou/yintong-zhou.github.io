@@ -177,12 +177,16 @@ main,
       // room for descenders inside the reveal mask
       padding-bottom: 0.08em;
       margin-bottom: -0.08em;
+
+      > span {
+        display: block;
+      }
     }
   }
 
   &__lead {
     grid-column: 1 / span 5;
-    max-width: 44ch;
+    max-width: 52ch;
     font-size: 1.1875rem;
     color: var(--muted);
   }

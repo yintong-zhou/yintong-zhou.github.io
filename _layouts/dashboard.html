@@ -27,8 +27,8 @@ layout: default
       <button class="chip" type="button" data-filter="{{ language | downcase | escape }}" aria-pressed="false">{{ language }}</button>
       {%- endfor %}
     </div>
-    <label class="visually-hidden" for="cerca">{{ t.search_label }}</label>
-    <input class="search" id="cerca" type="search" placeholder="{{ t.search_placeholder }}" autocomplete="off" data-search-input>
+    <label class="visually-hidden" for="search">{{ t.search_label }}</label>
+    <input class="search" id="search" type="search" placeholder="{{ t.search_placeholder }}" autocomplete="off" data-search-input>
   </div>
 
   <p class="status" role="status" aria-live="polite" data-status>{{ projects_label }}</p>

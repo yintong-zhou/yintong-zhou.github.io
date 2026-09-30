@@ -1,7 +1,7 @@
 ---
 title: aes-tool
 repo: https://github.com/yintong-zhou/aes-tool
-summary: Cifra e decifra input di vario tipo con il protocollo AES256.
+summary: Encrypts and decrypts various inputs with the AES256 protocol.
 language: C#
 updated: 2024-11-20
 ---

@@ -1,9 +1,14 @@
 ---
 layout: home
-lang: it
+lang: en
 route: /
+permalink: /
 title: Home
-headline_1: Codice che
-headline_2: ho scritto.
-lead: I miei progetti su GitHub, ognuno con la sua scheda e il link diretto al repository.
+description: Systems and tools for work and everyday life, each with its GitHub repository.
+headline_1: I build tools
+headline_rotating:
+  - "for work."
+  - "for private life."
+  - "for everyday life."
+lead: I design and build systems and tools that make the day simpler, at work and in private life. Each project has its own page and a direct link to the repository.
 ---

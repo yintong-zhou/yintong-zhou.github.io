@@ -8,13 +8,53 @@
 }
 
 @keyframes rise {
-  from { transform: translateY(105%); }
+  from { transform: translateY(140%); }
   to { transform: translateY(0); }
 }
 
 @keyframes settle {
   from { opacity: 0; transform: translateY($space-1); }
   to { opacity: 1; transform: none; }
+}
+
+// Headline rotator. Without JS (or with reduced motion) only the first phrase shows.
+// With JS, the items are stacked in one grid cell (so the line is as wide as the longest
+// phrase) and slide through a mask: the active one rests, the previous leaves upward.
+.rotator {
+  display: grid;
+  overflow: hidden;
+  // room for descenders inside the mask
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+
+  &__item {
+    grid-area: 1 / 1;
+    visibility: hidden;
+
+    &:first-child {
+      visibility: visible;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rotator.is-live .rotator__item {
+    visibility: visible;
+    transform: translateY(140%);
+    transition: transform 0.75s $ease-out;
+
+    &.is-active {
+      transform: none;
+    }
+
+    &.is-past {
+      transform: translateY(-140%);
+    }
+
+    &.no-anim {
+      transition: none;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -34,7 +74,7 @@
       animation-delay: 0.45s;
     }
 
-    .hero__title .line:nth-child(2) > span {
+    .hero__title .line + .line > span {
       animation-delay: 0.58s;
     }
 

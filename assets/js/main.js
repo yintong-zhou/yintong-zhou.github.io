@@ -15,6 +15,39 @@
     });
   }
 
+  // Home headline: cycle through the phrases (markup in layouts/home.html, styles in _motion.scss).
+  // Skipped with reduced motion: the first phrase stays put.
+  var rotator = document.querySelector("[data-rotator]");
+  if (rotator && !reduceMotion.matches) {
+    var items = Array.prototype.slice.call(rotator.children);
+    if (items.length > 1) {
+      var index = 0;
+      rotator.classList.add("is-live");
+      items[0].classList.add("is-active");
+
+      var advance = function () {
+        var current = items[index];
+        index = (index + 1) % items.length;
+        var next = items[index];
+        // Park the incoming phrase below the mask without animating, then slide it in.
+        next.classList.add("no-anim");
+        next.classList.remove("is-past");
+        void next.offsetWidth;
+        next.classList.remove("no-anim");
+        next.classList.add("is-active");
+        current.classList.remove("is-active");
+        current.classList.add("is-past");
+      };
+
+      // Let the intro finish on the first visit of the session.
+      var start = root.classList.contains("intro") ? 3600 : 3000;
+      setTimeout(function () {
+        advance();
+        setInterval(advance, 3200);
+      }, start);
+    }
+  }
+
   // Dashboard: filter by language + search. Remaining rows glide to their new
   // position (FLIP), new rows fade in.
   var dashboard = document.querySelector("[data-dashboard]");

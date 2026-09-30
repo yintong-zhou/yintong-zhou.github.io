@@ -1,48 +1,7 @@
 # UI strings, one block per language. Language codes must match `languages` in _config.yml.
+# Only English is enabled at the moment; to add a language, see CLAUDE.md.
 # `%token%` placeholders are replaced in Liquid (layouts/dashboard.html) or JS (assets/js/main.js).
 # Page copy that belongs to a single page (hero headline, lead) lives in that page's front matter.
-
-it:
-  name: Italiano
-  code: IT
-  skip: Vai al contenuto
-  nav_label: Principale
-  nav_projects: Progetti
-  theme_toggle: Cambia tema
-  lang_label: Lingua
-  recent: Aggiornati di recente
-  see_all: Vedi tutti i progetti
-  dashboard_title: Dashboard
-  stats: "%projects% in %languages%."
-  count_one: "%n% progetto"
-  count_other: "%n% progetti"
-  count_of: "%n% di %total% progetti"
-  languages_one: "%n% linguaggio"
-  languages_other: "%n% linguaggi"
-  last_update: "Ultimo aggiornamento: %date%."
-  filter_label: Filtra per linguaggio
-  all: Tutti
-  search_label: Cerca un progetto
-  search_placeholder: Cerca per nome o argomento
-  col_updated: Aggiornato
-  col_project: Progetto
-  col_language: Linguaggio
-  empty: Nessun progetto corrisponde ai filtri.
-  reset: Azzera i filtri
-  back: Tutti i progetti
-  open_github: Apri su GitHub
-  open_demo: Vedi la demo
-  f_language: Linguaggio
-  f_updated: Aggiornato
-  f_repository: Repository
-  f_topics: Argomenti
-  not_specified: Non indicato
-  screenshot_alt: "Schermata di %title%"
-  pager_label: Altri progetti
-  prev: Precedente
-  next: Successivo
-  months_short: [gen, feb, mar, apr, mag, giu, lug, ago, set, ott, nov, dic]
-  months_long: [gennaio, febbraio, marzo, aprile, maggio, giugno, luglio, agosto, settembre, ottobre, novembre, dicembre]
 
 en:
   name: English
@@ -50,6 +9,7 @@ en:
   skip: Skip to content
   nav_label: Main
   nav_projects: Projects
+  nav_about: About me
   theme_toggle: Toggle theme
   lang_label: Language
   recent: Recently updated

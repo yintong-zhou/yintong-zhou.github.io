@@ -4,9 +4,20 @@ layout: default
 {%- include i18n.html -%}
 {%- assign projects = site.projects | sort: "updated" | reverse -%}
 <section class="hero wrap">
+  {%- comment -%}
+    The second line cycles through page.headline_rotating (assets/js/main.js). Screen readers get the
+    full list once, the animated copy is hidden from them.
+  {%- endcomment %}
   <h1 class="hero__title">
-    <span class="line"><span>{{ page.headline_1 }}</span></span>
-    <span class="line"><span>{{ page.headline_2 }}</span></span>
+    <span class="visually-hidden">{{ page.headline_1 }} {{ page.headline_rotating | join: ", " }}</span>
+    <span class="line" aria-hidden="true"><span>{{ page.headline_1 }}</span></span>
+    <span class="line" aria-hidden="true"><span>
+      <span class="rotator" data-rotator>
+        {%- for phrase in page.headline_rotating %}
+        <span class="rotator__item">{{ phrase }}</span>
+        {%- endfor %}
+      </span>
+    </span></span>
   </h1>
   <div class="grid">
     <p class="hero__lead">{{ page.lead }}</p>
@@ -16,9 +27,9 @@ layout: default
   </div>
 </section>
 
-<section class="section wrap" aria-labelledby="recenti">
+<section class="section wrap" aria-labelledby="recent">
   <div class="section__head">
-    <h2 class="section__title" id="recenti">{{ t.recent }}</h2>
+    <h2 class="section__title" id="recent">{{ t.recent }}</h2>
   </div>
   <ul class="project-list">
     {%- for project in projects limit: 3 -%}

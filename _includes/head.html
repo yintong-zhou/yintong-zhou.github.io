@@ -16,12 +16,14 @@
     })();
   </script>
   {% seo %}
-  {%- for item in alts -%}
-    {%- assign parts = item | split: "|" -%}
-    {%- if parts[2] == "1" %}
+  {%- if alts.size > 1 -%}
+    {%- for item in alts -%}
+      {%- assign parts = item | split: "|" -%}
+      {%- if parts[2] == "1" %}
   <link rel="alternate" hreflang="{{ parts[0] }}" href="{{ parts[1] | absolute_url }}">
-    {%- endif -%}
-  {%- endfor %}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif %}
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon-32.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
